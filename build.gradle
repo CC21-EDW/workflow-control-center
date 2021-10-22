@@ -31,3 +31,31 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+String webappDir = "$projectDir/src/main/webapp"
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["$webappDir/dist/", "$projectDir/src/main/resources"]
+        }
+    }
+}
+
+processResources {
+    dependsOn "buildAngular"
+}
+
+task buildAngular(type: Exec) {
+    dependsOn "installAngular"
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    group = BasePlugin.BUILD_GROUP
+    commandLine "npx", "ng", "build"
+}
+
+task installAngular(type: Exec) {
+    workingDir "$webappDir"
+    inputs.dir "$webappDir"
+    group = BasePlugin.BUILD_GROUP
+    commandLine "npm", "install", "--no-optional", "--no-shrinkwrap"
+}
