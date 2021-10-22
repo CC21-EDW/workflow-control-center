@@ -5,6 +5,12 @@
 gradle bootRun
 ```
 
+## Docker
+```shell
+docker build -t wcc .
+docker run wcc
+```
+
 ## Access the UI
 [http://localhost:8080/](http://localhost:8080/)
 
