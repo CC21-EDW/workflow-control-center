@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CC21-EDW_workflow-control-center&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CC21-EDW_workflow-control-center)
+
 # Workflow Control Center
 
 This web app is used to manage workflows.
