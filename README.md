@@ -1,5 +1,7 @@
 # Workflow Control Center
 
+This project is built using Spring Boot to provide a REST API for an Angular application.
+
 ## Run the App
 
 ```shell
