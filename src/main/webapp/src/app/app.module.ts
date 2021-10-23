@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {TestControllerWccApi} from "../generated/api";
 
 @NgModule({
   declarations: [
@@ -10,10 +10,11 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    TestControllerWccApi
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
