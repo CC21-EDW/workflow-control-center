@@ -12,7 +12,6 @@ import {BaloiseDesignSystemModule} from "@baloise/design-system-components-angul
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BaloiseDesignSystemModule.forRoot()
   ],
   providers: [
