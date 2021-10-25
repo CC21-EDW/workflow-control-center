@@ -1,0 +1,15 @@
+.gitignore
+README.md
+api.module.ts
+api/api.ts
+api/test-controller.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/date-dto.ts
+model/models.ts
+ng-package.json
+package.json
+tsconfig.json
+variables.ts

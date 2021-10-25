@@ -55,12 +55,12 @@ task buildAngular(type: Exec) {
     workingDir "$webappDir"
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
-    commandLine "npx", "ng", "build"
+    commandLine "npm", "run", "build"
 }
 
 task installAngular(type: Exec) {
     workingDir "$webappDir"
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
-    commandLine "npm", "install", "--no-optional", "--no-shrinkwrap"
+    commandLine "npm", "install"
 }

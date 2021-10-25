@@ -10,8 +10,8 @@ import java.util.Date;
 @RestController()
 @RequestMapping(path = "/api")
 public class TestController {
-  @GetMapping(path = "/get-time")
-  public DateDto helloWorld() {
+  @GetMapping(path = "/server-time")
+  public DateDto getCurrentServerTime() {
     return DateDto.builder().date(new Date()).build();
   }
 }

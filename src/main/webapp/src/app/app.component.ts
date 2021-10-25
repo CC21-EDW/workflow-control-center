@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component} from '@angular/core';
+import {TestControllerWccApi} from "../generated/api";
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,13 @@ export class AppComponent {
   title = 'Workflow Control Center';
   currentTime = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private api: TestControllerWccApi) {
   }
 
   async getCurrentTime() {
     this.currentTime = 'loading...';
-    await this.http
-              .get(`/api/get-time`)
+    await this.api
+              .getCurrentServerTime()
               .toPromise()
               .then(r => this.currentTime = JSON.stringify(r));
   }
