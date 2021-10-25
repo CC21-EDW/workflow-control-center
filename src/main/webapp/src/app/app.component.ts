@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private api: TestControllerWccApi) {
   }
 
-  async getCurrentTime() {
+  async getCurrentTime(): Promise<void> {
     this.currentTime = 'loading...';
     await this.api
               .getCurrentServerTime()

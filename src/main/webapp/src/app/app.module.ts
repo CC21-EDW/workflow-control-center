@@ -1,8 +1,9 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TestControllerWccApi} from "../generated/api";
+import {BaloiseDesignSystemModule} from "@baloise/design-system-components-angular";
 
 @NgModule({
   declarations: [
@@ -10,12 +11,15 @@ import {TestControllerWccApi} from "../generated/api";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BaloiseDesignSystemModule.forRoot()
   ],
   providers: [
     TestControllerWccApi
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
