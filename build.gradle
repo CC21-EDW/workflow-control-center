@@ -55,7 +55,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-//    finalizedBy('sonarqube')
+    finalizedBy('jacocoTestReport')
 }
 
 String webappDir = "$projectDir/src/main/webapp"
@@ -84,8 +84,4 @@ task installAngular(type: Exec) {
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
     commandLine "npm", "install"
-}
-
-tasks.named('sonarqube').configure {
-    dependsOn jacocoTestReport
 }
