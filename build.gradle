@@ -27,18 +27,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.5'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springdoc:springdoc-openapi-ui:1.5.12'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok'
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.5'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.5'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
