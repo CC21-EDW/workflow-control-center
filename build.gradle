@@ -17,7 +17,7 @@ sonarqube {
         property "sonar.projectKey", "CC21-EDW_workflow-control-center"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.codeCoveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacoco.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
