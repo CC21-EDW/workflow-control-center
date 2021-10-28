@@ -8,7 +8,7 @@ plugins {
 
 group = 'com.baloise.open'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 sonarqube {
     properties {
@@ -20,6 +20,15 @@ sonarqube {
         property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacoco.xml"
     }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled(true)
+        html.enabled(true)
+    }
+}
+
+test.finalizedBy jacocoTestReport
 
 configurations {
     compileOnly {
@@ -76,4 +85,8 @@ task installAngular(type: Exec) {
     inputs.dir "$webappDir"
     group = BasePlugin.BUILD_GROUP
     commandLine "npm", "install"
+}
+
+tasks.named('sonarqube').configure {
+    dependsOn test
 }
