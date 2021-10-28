@@ -8,7 +8,7 @@ plugins {
     id "org.springdoc.openapi-gradle-plugin" version "1.3.3"
 
     // sonar and test coverage
-    id 'org.sonarqube' version '3.3'
+    id 'org.sonarqube'
     id 'jacoco'
 }
 
