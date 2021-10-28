@@ -55,7 +55,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy('sonarqube')
+//    finalizedBy('sonarqube')
 }
 
 String webappDir = "$projectDir/src/main/webapp"
