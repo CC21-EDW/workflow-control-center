@@ -28,8 +28,6 @@ jacocoTestReport {
     }
 }
 
-test.finalizedBy jacocoTestReport
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -57,7 +55,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy sonarqube
+    finalizedBy('sonarqube')
 }
 
 String webappDir = "$projectDir/src/main/webapp"
@@ -89,5 +87,4 @@ task installAngular(type: Exec) {
 }
 
 tasks.named('sonarqube').configure {
-    dependsOn test
-}
+    dependsOn jacocoTestReport}
