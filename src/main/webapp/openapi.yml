@@ -14,7 +14,7 @@
     "/api/server-time": {
       "get": {
         "tags": [
-            "test-controller"
+          "test-controller"
         ],
         "operationId": "getCurrentServerTime",
         "responses": {
