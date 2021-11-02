@@ -30,23 +30,8 @@ sonarqube {
         property "sonar.projectKey", "CC21-EDW_workflow-control-center"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.codeCoveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacoco.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", ["$buildDir/reports/jacoco/test/jacoco.xml", "cc-api/build/reports/jacoco/test/jacoco.xml"]
     }
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled(true)
-        html.enabled(true)
-    }
-}
-
-test {
-    finalizedBy('sonarqube')
-}
-
-tasks.named('sonarqube').configure {
-    dependsOn jacocoTestReport
 }
 
 task rebundleApp(type: Jar) {
@@ -55,4 +40,17 @@ task rebundleApp(type: Jar) {
     destinationDirectory = file("build/libs")
     from(files("cc-ng/dist/static")) { into 'BOOT-INF/classes/static' }
     from(zipTree('cc-api/build/libs/cc-api-0.0.1-SNAPSHOT.jar')) { into "/" }
+}
+
+allprojects {
+    jacocoTestReport {
+        reports {
+            xml.enabled(true)
+            html.enabled(true)
+        }
+    }
+}
+
+tasks.named('sonarqube').configure {
+    dependsOn('jacocoTestReport')
 }
