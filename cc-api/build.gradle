@@ -48,11 +48,18 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-test {
-    useJUnitPlatform()
-    finalizedBy(jacocoTestReport)
+jar {
+    dependsOn "generateOpenApiDocs"
 }
 
-task sonarqube {
-    dependsOn('jacocoTestReport')
+jacocoTestReport {
+    reports {
+        xml.enabled(true)
+        html.enabled(true)
+    }
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy('jacocoTestReport')
 }
