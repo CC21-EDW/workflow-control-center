@@ -1,18 +1,17 @@
 package com.baloise.open.wcc;
 
-import com.baloise.open.wcc.dto.DateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
 class WorkflowControlCenterApplicationTests {
   @Test
-  void getCurrentServerTime() {
-    TestController tc = new TestController();
-    DateDto currentServerTime = tc.getCurrentServerTime();
-    assertNotNull(currentServerTime);
-    assertNotNull(currentServerTime.getDate());
+  void test() {
+    assertDoesNotThrow(() -> WorkflowControlCenterApplication.main(new String[]{
+        "--spring.main.web-environment=false",
+        // Override any other environment properties according to needs
+    }));
   }
 }
