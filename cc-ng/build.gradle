@@ -1,0 +1,34 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+  id 'java'
+}
+
+String npmCmd = (Os.isFamily(Os.FAMILY_WINDOWS)) ? "npm.cmd" : "npm"
+
+compileJava {
+  dependsOn 'buildAngular'
+}
+
+clean {
+  dependsOn 'cleanAngular'
+}
+
+task cleanAngular {
+  delete 'dist'
+}
+
+task installAngular(type: Exec) {
+  workingDir "$projectDir"
+  inputs.dir "$projectDir"
+  group = BasePlugin.BUILD_GROUP
+  commandLine "$npmCmd", "install"
+}
+
+task buildAngular(type: Exec) {
+  dependsOn 'installAngular'
+  workingDir "$projectDir"
+  inputs.dir "$projectDir"
+  group = BasePlugin.BUILD_GROUP
+  commandLine "$npmCmd", "run", "build"
+}

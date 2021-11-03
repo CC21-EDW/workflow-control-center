@@ -1,9 +1,7 @@
-import org.apache.tools.ant.taskdefs.condition.Os
-
 plugins {
-    id 'org.springframework.boot' version '2.5.6'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+
+    // sonar and test coverage
     id 'org.sonarqube' version '3.3'
     id 'jacoco'
 }
@@ -12,6 +10,19 @@ group = 'com.baloise.open'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(':cc-api'))
+    implementation(project(':cc-ng'))
+}
+
+jar {
+    finalizedBy('rebundleApp')
+}
+
 sonarqube {
     properties {
         property "sonar.sourceEncoding", "UTF-8"
@@ -19,78 +30,16 @@ sonarqube {
         property "sonar.projectKey", "CC21-EDW_workflow-control-center"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.codeCoveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacoco.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "$projectDir/cc-api/build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled(true)
-        html.enabled(true)
-    }
-}
+task rebundleApp(type: Zip) {
+    dependsOn('jar')
+    archiveBaseName = 'cc'
+    archiveExtension = 'jar'
+    destinationDirectory = file("build/libs")
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.5.12'
-
-    compileOnly 'org.projectlombok:lombok'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-test {
-    useJUnitPlatform()
-    finalizedBy('sonarqube')
-}
-
-String webappDir = "$projectDir${File.separator}src${File.separator}main${File.separator}webapp"
-sourceSets {
-    main {
-        resources {
-            srcDirs = ["$webappDir/dist/", "$projectDir/src/main/resources"]
-        }
-    }
-}
-
-processResources {
-    dependsOn "buildAngular"
-}
-
-String npmCmd =(Os.isFamily(Os.FAMILY_WINDOWS)) ? "npm.cmd" : "npm"
-
-task buildAngular(type: Exec) {
-    dependsOn "installAngular"
-    workingDir "$webappDir"
-    inputs.dir "$webappDir"
-    group = BasePlugin.BUILD_GROUP
-    commandLine "$npmCmd", "run", "build"
-}
-
-task installAngular(type: Exec) {
-    println "$npmCmd"
-    workingDir "$webappDir"
-    inputs.dir "$webappDir"
-    group = BasePlugin.BUILD_GROUP
-    commandLine "$npmCmd", "install"
-}
-
-tasks.named('sonarqube').configure {
-    dependsOn jacocoTestReport
+    from(zipTree('cc-api/build/libs/cc-api-0.0.1-SNAPSHOT.jar'))
+    from(files("cc-ng/dist/static")) { into 'BOOT-INF/classes/static' }
 }

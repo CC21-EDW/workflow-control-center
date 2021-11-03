@@ -1,1 +1,3 @@
 rootProject.name = 'workflow-control-center'
+include 'cc-api'
+include 'cc-ng'
