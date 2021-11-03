@@ -8,5 +8,5 @@ import java.util.Date;
 @Data
 @Builder
 public class DateDto {
-  Date date;
+  private Date date;
 }
