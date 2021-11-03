@@ -2,8 +2,9 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {TestControllerWccApi} from "../generated/api";
+import {ApiModule, TestControllerWccApi} from "../generated/api";
 import {BaloiseDesignSystemModule} from "@baloise/design-system-components-angular";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import {BaloiseDesignSystemModule} from "@baloise/design-system-components-angul
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BaloiseDesignSystemModule.forRoot()
+    HttpClientModule,
+    BaloiseDesignSystemModule.forRoot(),
+    ApiModule
   ],
   providers: [
     TestControllerWccApi

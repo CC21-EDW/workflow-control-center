@@ -45,4 +45,5 @@ testem.log
 Thumbs.db
 
 # Baloise Design System
-/src/assets/fonts/**/*
+src/assets/fonts/**/*
+src/generated/**/*
