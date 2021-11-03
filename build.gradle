@@ -34,10 +34,12 @@ sonarqube {
     }
 }
 
-task rebundleApp(type: Jar) {
+task rebundleApp(type: Zip) {
     dependsOn('jar')
     archiveBaseName = 'cc'
+    archiveExtension = 'jar'
     destinationDirectory = file("build/libs")
+
+    from(zipTree('cc-api/build/libs/cc-api-0.0.1-SNAPSHOT.jar'))
     from(files("cc-ng/dist/static")) { into 'BOOT-INF/classes/static' }
-    from(zipTree('cc-api/build/libs/cc-api-0.0.1-SNAPSHOT.jar')) { into "/" }
 }
