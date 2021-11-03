@@ -26,5 +26,5 @@ jobs:
     - name: Add artifact to build results
       uses: actions/upload-artifact@v2
       with:
-        name: JARs
+        name: JAR-${{ matrix.os }}
         path: build/libs/*.jar
