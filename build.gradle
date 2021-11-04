@@ -38,6 +38,7 @@ task rebundleApp(type: Zip) {
     dependsOn('jar')
     archiveBaseName = 'cc'
     archiveExtension = 'jar'
+    entryCompression = ZipEntryCompression.STORED
     destinationDirectory = file("build/libs")
 
     from(zipTree('cc-api/build/libs/cc-api-0.0.1-SNAPSHOT.jar'))
