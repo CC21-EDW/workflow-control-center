@@ -1,14 +1,35 @@
-<bal-app>
-  <header>
-    <h1>
-      {{title}}
-    </h1>
+<bal-app background>
+  <header class="has-background-white">
+    <bal-navbar no-burger>
+      <bal-navbar-brand>
+        <bal-icon name="logo" inverted size="large"></bal-icon>
+        <bal-text style="margin-left: 15px"><strong>{{title}}</strong></bal-text>
+      </bal-navbar-brand>
+      <bal-navbar-menu>
+        <bal-navbar-menu-start>
+          <a class="navbar-item" routerLink="system-overview">
+            <bal-text>System Overview</bal-text>
+          </a>
+          <a class="navbar-item" routerLink="log">
+            <bal-text>Log</bal-text>
+          </a>
+          <a class="navbar-item" routerLink="cid">
+            <bal-text>CID</bal-text>
+          </a>
+        </bal-navbar-menu-start>
+      </bal-navbar-menu>
+    </bal-navbar>
   </header>
-  <main class="container">
-    <bal-button (click)="getCurrentTime()">Get Current Time</bal-button>
-    <span>{{currentTime}}</span>
-    <router-outlet></router-outlet>
+
+  <main>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </main>
-  <bal-footer>
+
+  <bal-footer has-track-line>
+    <div class="container">
+      <span style="margin-right: 16px">Baloise CodeCamp 2021 - Interlaken, Beatenberg - Event Driven Workflows</span>
+    </div>
   </bal-footer>
 </bal-app>
