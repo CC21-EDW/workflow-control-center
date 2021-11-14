@@ -48,9 +48,9 @@ public class EdwController {
   public List<StatusDto> getEdwStatus() {
     return service.getEdwStatus()
                   .stream()
-                  .map(status -> StatusDto.builder().value(status.toString()).build())
+                  .map(status -> StatusDto.builder()
+                                          .value(status.toString())
+                                          .build())
                   .toList();
   }
 }
-
-

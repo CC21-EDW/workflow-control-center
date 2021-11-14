@@ -21,11 +21,5 @@ export class LogComponent implements OnInit {
     } catch (e) {
       this.toaster.create({ message: 'Requsting data from Kafka failed!', color: 'danger' })
     }
-    this.logs = [{
-      timestamp: 1,
-      cid: "foo-bar-1",
-      eventType: "connect",
-      value: "hello world"
-    }];
   }
 }
