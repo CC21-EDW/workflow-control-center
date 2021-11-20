@@ -1,4 +1,4 @@
-package com.baloise.open.wcc;
+package com.baloise.open.edw.wcc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

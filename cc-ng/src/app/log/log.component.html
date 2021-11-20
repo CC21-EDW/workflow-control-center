@@ -1,0 +1,19 @@
+<h1>Log</h1>
+<bal-card>
+  <table class="table is-fullwidth is-striped is-hoverable p-0">
+    <thead>
+    <th>Time</th>
+    <th>Event Type</th>
+    <th>Correlation</th>
+    <th>Value</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let log of logs">
+      <td>{{log?.timestamp}}</td>
+      <td>{{log?.eventType}}</td>
+      <td>{{log?.cid}}</td>
+      <td>{{log?.value}}</td>
+    </tr>
+    </tbody>
+  </table>
+</bal-card>

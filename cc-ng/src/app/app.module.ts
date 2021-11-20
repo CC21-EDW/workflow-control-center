@@ -2,13 +2,19 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ApiModule, TestControllerWccApi} from "../generated/api";
+import {ApiModule} from "../generated/api";
 import {BaloiseDesignSystemModule} from "@baloise/design-system-components-angular";
 import {HttpClientModule} from "@angular/common/http";
+import {LogComponent} from './log/log.component';
+import {CidComponent} from './cid/cid.component';
+import {SystemOverviewComponent} from './system-overview/system-overview.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LogComponent,
+    CidComponent,
+    SystemOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -17,9 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     BaloiseDesignSystemModule.forRoot(),
     ApiModule
   ],
-  providers: [
-    TestControllerWccApi
-  ],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
