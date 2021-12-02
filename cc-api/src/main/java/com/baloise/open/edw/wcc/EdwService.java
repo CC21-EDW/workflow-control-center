@@ -26,7 +26,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.streams.StreamsConfig;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -71,7 +70,7 @@ public class EdwService {
     properties.put(ConsumerConfig.GROUP_ID_CONFIG, CC_CLIENT_ID);
     properties.put(AdminClientConfig.CLIENT_ID_CONFIG, KAFKA_HOSTNAME);
 
-    properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
     properties.put(SCHEMA_SERVER_CONFIG_KEY, "http://localhost:9012");
     properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
