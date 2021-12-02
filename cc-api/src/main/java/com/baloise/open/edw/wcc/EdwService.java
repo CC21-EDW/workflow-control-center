@@ -16,6 +16,7 @@
 package com.baloise.open.edw.wcc;
 
 import com.baloise.open.edw.wcc.dto.StatusDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -81,17 +82,17 @@ public class EdwService {
   }
 
   public List<StatusDto> getEdwStatus() {
-    KafkaConsumer<String, StatusDto> consumer = new KafkaConsumer<>(getProperties());
+    KafkaConsumer<String, Object> consumer = new KafkaConsumer<>(getProperties());
 
     Set<TopicPartition> topicPartitions = getTopicPartition(consumer, STATUS_TOPIC_NAME);
     consumer.assign(topicPartitions);
 
     ArrayList<StatusDto> statusList = new ArrayList<>();
     consumer.seekToBeginning(topicPartitions);
-    ConsumerRecords<String, StatusDto> records = consumer.poll(Duration.ofDays(1));
+    ConsumerRecords<String, Object> records = consumer.poll(Duration.ofDays(1));
     records.forEach((record) -> {
       try {
-        StatusDto status = record.value();
+        StatusDto status = new ObjectMapper().readValue(record.value().toString(), StatusDto.class);
         EdwService.log.info("Record: {}", status);
         statusList.add(status);
       } catch (Throwable e) {
