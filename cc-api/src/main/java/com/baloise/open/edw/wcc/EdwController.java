@@ -41,16 +41,11 @@ public class EdwController {
 
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "",
-          content = @Content(array=@ArraySchema(schema = @Schema(implementation = StatusDto.class)),
+          content = @Content(array = @ArraySchema(schema = @Schema(implementation = StatusDto.class)),
               mediaType = MediaType.APPLICATION_JSON_VALUE))
   })
   @GetMapping(path = "/status", produces = "application/json")
   public List<StatusDto> getEdwStatus() {
-    return service.getEdwStatus()
-                  .stream()
-                  .map(status -> StatusDto.builder()
-                                          .value(status.toString())
-                                          .build())
-                  .toList();
+    return service.getEdwStatus();
   }
 }

@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class EdwControllerTest {
   @Test
-  void getCurrentServerTime() {
+  void getEdwStatus() {
     EdwService serviceMock = mock(EdwService.class);
     when(serviceMock.getEdwStatus()).thenReturn(Collections.singletonList(new StatusDto(1L, "cid", "eventType", "value")));
     EdwController edwController = new EdwController(serviceMock);
